@@ -1,34 +1,22 @@
-Laboratório - 524 - Integração e Entrega Continua com Git, Jenkins, Nexus e SonarQuebe
+Laboratório GitLab CI
 =============================
 
-Repositório para armazenar o Laboratório do curso de Integração e Entrega Continua com Git, Jenkins, Nexus e SonarQuebe da [4Linux][1]
-
-Dependências
-------------
-
-Para a criação do laboratório é necessário ter pré instalado os seguintes softwares:
-
-* [Git][2]
-* [VirtualBox][3]
-* [Vagrant][5]
-
-> Para o máquinas com Windows aconselhamos, se possível, que as instalações sejam feitas pelo gerenciador de pacotes **[Cygwin][6]**.
-
-> Para as máquinas com MAC OS aconselhamos, se possível, que as instalações sejam feitas pelo gerenciador de pacotes **brew**.
+Repositório para armazenar o Laboratório do treinamento de GitLab-CI.
 
 Laboratório
 -----------
 
 O Laboratório será criado utilizando o [Vagrant][7]. Ferramenta para criar e gerenciar ambientes virtualizados (baseado em Inúmeros providers) com foco em automação.
 
-Nesse laboratórios, que está centralizado no arquivo [Vagrantfile][8], serão criadas 4 maquinas com as seguintes características:
+Nesse laboratórios, que está centralizado no arquivo [Vagrantfile][8], serão criadas 2 maquinas com as seguintes características:
+
+![](images/gitlab-ci-trainning.jpg)
+
 
 Nome       | vCPUs | Memoria RAM | IP            | S.O.¹           | Script de Provisionamento²
 ---------- |:-----:|:-----------:|:-------------:|:---------------:| -----------------------------
-cicd       | 1     | 1536MB      | 192.168.88.10 | debian/buster64 | 
-cicd-tools | 1     | 3072MB      | 192.168.88.20 | debian/buster64 | 
-homolog    | 1     | 512MB       | 192.168.88.30 | debian/buster64 | 
-production | 1     | 512MB       | 192.168.88.40 | debian/buster64 | 
+gitlab     | 2     | 5076MB       | 192.168.56.10 | debian/buster64 | 
+homolog    | 1     | 758MB        | 192.168.56.20 | debian/buster64 | 
 
 > **¹**: Esses Sistemas operacionais estão sendo utilizado no formato de Boxes, é a forma como o vagrant chama as imagens do sistema operacional utilizado.
 
@@ -40,8 +28,8 @@ Criação do Laboratório
 Para criar o laboratório é necessário fazer o `git clone` desse repositório e, dentro da pasta baixada realizar a execução do `vagrant up`, conforme abaixo:
 
 ```bash
-git clone https://github.com/4linux/524
-cd 524/
+git clone https://github.com/4linux/course-gitlab-ci
+cd course-gitlab-ci/
 vagrant up
 ```
 
