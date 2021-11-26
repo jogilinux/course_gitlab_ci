@@ -4,10 +4,8 @@
 box = "debian/buster64"
 
 machines = {
-  "cicd"       => {"memory"=>"1536", "cpus"=>"1", "ip" => "10" , "installDocker" => "yes"},
-  "cicd-tools" => {"memory"=>"3072", "cpus"=>"1", "ip" => "20" , "installDocker" => "yes"},
-  "homolog"    => {"memory"=>"512" , "cpus"=>"1", "ip" => "30" , "installDocker" => "yes"},
-  "production" => {"memory"=>"512" , "cpus"=>"1", "ip" => "40" , "installDocker" => "yes"},
+  "gitlab"       => {"memory"=>"5076", "cpus"=>"2", "ip" => "10" , "installDocker" => "yes"},
+  "homolog-01"    => {"memory"=>"758" , "cpus"=>"1", "ip" => "20" , "installDocker" => "yes"},
 }
 
 Vagrant.configure("2") do |config|
@@ -15,8 +13,8 @@ Vagrant.configure("2") do |config|
   
   machines.each do |name,conf|
     config.vm.define "#{name}" do |machine|
-      machine.vm.network "private_network", ip: "192.168.88.#{conf["ip"]}"
-      machine.vm.hostname = "#{name}.example.org"
+      machine.vm.network "private_network", ip: "192.168.56.#{conf["ip"]}"
+      machine.vm.hostname = "#{name}.example.com"
       machine.vm.provider "virtualbox" do |vb|
         vb.cpus = "#{conf["cpus"]}"
 	vb.memory = "#{conf["memory"]}"
@@ -35,9 +33,9 @@ Vagrant.configure("2") do |config|
            s.args = [box]
          end
       
-        if "#{name}" == "cicd-tools" then
-          machine.vm.provision "shell", path: "provision/run_sonarqube_container.sh"
-          machine.vm.provision "shell", path: "provision/run_nexus_container.sh"
+        if "#{name}" == "gitlab" then
+          machine.vm.provision "shell", path: "provision/install_gitlab.sh"
+#          machine.vm.provision "shell", path: "provision/run_gitlab_container.sh"
         end
       end
       
